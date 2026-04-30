@@ -8,7 +8,7 @@ export default function Home() {
       <header className="h-screen flex flex-col justify-center items-center text-center bg-gradient-to-br from-black via-gray-900 to-gray-800 px-6">
 
         <h1 className="text-4xl md:text-6xl font-bold mb-4">
-          Descubre el mundo Pokémon
+          Descubre el Mundo Pokémon
         </h1>
 
         <p className="text-gray-300 max-w-xl mb-6">
