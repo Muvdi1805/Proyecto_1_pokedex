@@ -7,19 +7,20 @@ import Detail from "./pages/Detail";
 import Favorites from "./pages/Favorites";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
-
 import Navbar from "./components/Navbar";
 import { FavoritesProvider } from "./context/FavoritesContext";
-
-
 import AdBlockModal from "./components/AdBlockModal";
+import ScrollToTop from "./components/ScrollToTop";
 
 export default function App() {
   return (
     <FavoritesProvider>
       <BrowserRouter>
 
-     
+        {/* FIX GLOBAL DEL SCROLL */}
+        <ScrollToTop />
+
+        {/* DARK PATTERN */}
         <AdBlockModal />
 
         {/* NAVBAR */}
