@@ -14,10 +14,20 @@ export default function Navbar() {
 
         <div className="max-w-6xl mx-auto flex justify-between items-center">
 
-          {/* LOGO */}
-          <h1 className="text-xl font-bold text-yellow-400">
-            Pokédex ⚡
-          </h1>
+          
+          <NavLink to="/" className="flex items-center gap-2">
+
+            <img
+              src="/icono.png"
+              alt="Pokédex logo"
+              className="w-8 h-8 object-contain hover:rotate-12 transition"
+            />
+
+            <h1 className="text-xl font-bold text-yellow-400">
+              Pokédex App
+            </h1>
+
+          </NavLink>
 
           {/* LINKS */}
           <ul className="flex gap-4 text-sm md:text-base">

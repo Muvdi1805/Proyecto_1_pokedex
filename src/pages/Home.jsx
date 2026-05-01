@@ -82,11 +82,6 @@ export default function Home() {
 
       </section>
 
-      {/* FOOTER */}
-      <footer className="py-6 text-center text-gray-500 text-sm">
-        © 2026 Pokédex App
-      </footer>
-
     </main>
   );
 }
