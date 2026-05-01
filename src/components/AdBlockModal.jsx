@@ -4,7 +4,7 @@ export default function AdBlockModal() {
   const [open, setOpen] = useState(true);
 
   useEffect(() => {
-    // 🔥 BLOQUEA EL SCROLL DEL BODY
+    // BLOQUEo DEL SCROLL 
     document.body.style.overflow = "hidden";
 
     return () => {
@@ -21,14 +21,14 @@ export default function AdBlockModal() {
       <div className="bg-gray-900 text-white p-6 rounded-2xl max-w-md w-full text-center shadow-2xl border border-gray-700">
 
         <h2 className="text-2xl font-bold text-red-500 mb-2">
-          ⚠️ AdBlock detectado
+          ⚠️ AdBlock Detectado
         </h2>
 
         <p className="text-gray-400 mb-4">
           Para continuar usando la app, desactiva tu bloqueador de anuncios.
         </p>
 
-                    {/*
+             {/*
                 ⚠️ DARK PATTERN: Confirmshaming + Visual Hierarchy
 
                 Este modal simula la detección de AdBlock (aunque no se verifica realmente),
@@ -54,7 +54,7 @@ export default function AdBlockModal() {
                 Aumentar la probabilidad de que el usuario elija la opción deseada
                 mediante manipulación visual y psicológica.
             */}
-            
+
         <div className="flex flex-col gap-3">
 
           <button

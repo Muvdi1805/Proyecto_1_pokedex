@@ -1,3 +1,5 @@
+import { typeNames } from "../utils/typeData";
+
 export default function Filters({
   search,
   setSearch,
@@ -31,7 +33,9 @@ export default function Filters({
         >
           <option value="">Tipo</option>
           {Object.keys(typeColors).map((t) => (
-            <option key={t}>{t}</option>
+            <option key={t} value={t}>
+              {typeNames[t]}
+            </option>
           ))}
         </select>
 
@@ -59,7 +63,9 @@ export default function Filters({
         >
           <option value="">Fuerte contra</option>
           {Object.keys(typeColors).map((t) => (
-            <option key={t}>{t}</option>
+            <option key={t} value={t}>
+              {typeNames[t]}
+            </option>
           ))}
         </select>
 
@@ -70,7 +76,9 @@ export default function Filters({
         >
           <option value="">Débil contra</option>
           {Object.keys(typeColors).map((t) => (
-            <option key={t}>{t}</option>
+            <option key={t} value={t}>
+              {typeNames[t]}
+            </option>
           ))}
         </select>
 

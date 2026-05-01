@@ -39,14 +39,14 @@ export const typeColors = {
   rock: "bg-stone-500",
   ghost: "bg-indigo-800",
   dragon: "bg-purple-600",
-  dark: "bg-gray-800",
+  dark: "bg-gray-500",
   steel: "bg-gray-400 text-black",
   fairy: "bg-pink-300 text-black",
 };
 
 export const typeNames = {
   fire: "Fuego", water: "Agua", grass: "Planta", electric: "Eléctrico",
-  ice: "Hielo", fighting: "Lucha", poison: "Veneno", ground: "Tierra",
+  ice: "Hielo", fighting: "Luchador", poison: "Venenoso", ground: "Tierra",
   flying: "Volador", psychic: "Psíquico", bug: "Bicho", rock: "Roca",
   ghost: "Fantasma", dragon: "Dragón", dark: "Siniestro",
   steel: "Acero", fairy: "Hada", normal: "Normal",
