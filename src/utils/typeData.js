@@ -44,6 +44,18 @@ export const typeColors = {
   fairy: "bg-pink-300 text-black",
 };
 
+export const generationNames = {
+  "generation-i": "Gen I",
+  "generation-ii": "Gen II",
+  "generation-iii": "Gen III",
+  "generation-iv": "Gen IV",
+  "generation-v": "Gen V",
+  "generation-vi": "Gen VI",
+  "generation-vii": "Gen VII",
+  "generation-viii": "Gen VIII",
+  "generation-ix": "Gen IX",
+};
+
 export const typeNames = {
   fire: "Fuego", water: "Agua", grass: "Planta", electric: "Eléctrico",
   ice: "Hielo", fighting: "Luchador", poison: "Venenoso", ground: "Tierra",
