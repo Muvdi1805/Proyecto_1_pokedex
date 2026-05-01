@@ -95,7 +95,7 @@ export default function Favorites() {
         ))}
       </div>
 
-      {/* MODAL DARK PATTERN */}
+      {/* MODAL */}
       <dialog
         ref={dialogRef}
         className="p-6 rounded-lg bg-gray-900 text-white"
@@ -108,9 +108,6 @@ export default function Favorites() {
           Esta acción no se puede deshacer. Perderás este Pokémon para siempre.
         </p>
 
-        {/* DARK PATTERN:
-        Botón eliminar más visible y llamativo,
-        cancelar menos visible → empuja la decisión */}
         
         <div className="flex justify-end gap-3">
           <button

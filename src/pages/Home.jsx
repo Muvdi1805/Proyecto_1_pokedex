@@ -23,8 +23,6 @@ export default function Home() {
           Explorar ahora
         </Link>
 
-        {/* ⚠️ DARK PATTERN: SOCIAL PROOF */}
-        {/* Se sugiere que expertos recomiendan la acción para influir en la decisión del usuario */}
         <p className="text-xs text-gray-500 mt-2">
           (Recomendado por entrenadores expertos 😉)
         </p>
@@ -64,7 +62,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ⚠️ SECCIÓN CON DARK PATTERN */}
       <section className="py-12 text-center bg-gray-900">
 
         <h2 className="text-xl font-bold mb-4">
@@ -75,7 +72,6 @@ export default function Home() {
           Más de 500 Pokémon ya están siendo explorados por otros usuarios.
         </p>
 
-        {/* ⚠️ DARK PATTERN: URGENCIA + FOMO */}
         {/* Se genera sensación de urgencia y miedo a quedarse fuera (Fear Of Missing Out) */}
         <Link
           to="/explore"

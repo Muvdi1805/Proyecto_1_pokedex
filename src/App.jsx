@@ -11,12 +11,18 @@ import NotFound from "./pages/NotFound";
 import Navbar from "./components/Navbar";
 import { FavoritesProvider } from "./context/FavoritesContext";
 
+
+import AdBlockModal from "./components/AdBlockModal";
+
 export default function App() {
   return (
     <FavoritesProvider>
       <BrowserRouter>
 
-        {/* NAVBAR (ya incluye header) */}
+     
+        <AdBlockModal />
+
+        {/* NAVBAR */}
         <Navbar />
 
         {/* CONTENIDO */}
@@ -36,7 +42,7 @@ export default function App() {
           © 2026 Pokédex App
         </footer>
 
-        {/* TOAST GLOBAL */}
+        {/* TOAST */}
         <Toaster position="top-right" />
 
       </BrowserRouter>

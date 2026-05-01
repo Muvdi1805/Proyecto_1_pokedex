@@ -94,10 +94,6 @@ export default function Contact() {
         <p className="text-sm text-gray-400 mb-4">
           Podrías perder una respuesta importante ⚠️
         </p>
-
-        {/* ⚠️ DARK PATTERN (confirmshaming)
-        El botón negativo es más largo y manipulativo,
-        mientras el positivo es más claro */}
         
         <div className="flex justify-end gap-3">
 

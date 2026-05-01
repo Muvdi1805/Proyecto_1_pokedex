@@ -27,7 +27,7 @@ export default function NotFound() {
         className="w-40 mt-6 animate-bounce"
       />
 
-      {/* DARK PATTERN */}
+     
       <p className="text-yellow-400 text-sm mt-4">
         ⚠️ Si no regresas ahora, podrías perder Pokémons raros...
       </p>
