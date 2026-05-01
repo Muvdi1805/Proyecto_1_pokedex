@@ -5,7 +5,7 @@ export default function TypeSelect({ value, onChange, label }) {
   const [open, setOpen] = useState(false);
   const ref = useRef();
 
-  // cerrar al hacer click afuera
+
   useEffect(() => {
     const handleClick = (e) => {
       if (!ref.current?.contains(e.target)) {
@@ -43,7 +43,7 @@ export default function TypeSelect({ value, onChange, label }) {
       {open && (
         <div className="absolute z-50 mt-2 w-full bg-gray-900 rounded-2xl shadow-2xl border border-gray-700 max-h-60 overflow-y-auto custom-scroll">
 
-          {/* 🔥 OPCIÓN LIMPIAR */}
+          
           <div
             onClick={() => {
               onChange("");

@@ -13,7 +13,7 @@ export default function Favorites() {
     dialogRef.current.showModal();
   };
 
-  //  Evita que al hacer click en eliminar se abra el Link
+  
   const handleDeleteClick = (e, id) => {
     e.preventDefault();
     e.stopPropagation();

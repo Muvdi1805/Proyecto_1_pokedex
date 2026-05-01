@@ -22,7 +22,7 @@ export default function Contact() {
         {/* HEADER */}
         <header className="text-center mb-6">
           <h1 className="text-3xl font-bold text-yellow-400">
-            Contacto ⚡
+            Contacto 
           </h1>
           <p className="text-gray-400 mt-2">
             Envíanos un mensaje

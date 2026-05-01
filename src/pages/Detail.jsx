@@ -21,7 +21,7 @@ export default function Detail() {
   const [generation, setGeneration] = useState("");
 
  useEffect(() => {
-  // 🔥 SCROLL ARRIBA SIEMPRE
+  // SCROLL ARRIBA SIEMPRE
   window.scrollTo({
     top: 0,
     behavior: "smooth", // puedes quitar "smooth" si no quieres animación
@@ -143,7 +143,7 @@ export default function Detail() {
           </button>
         </div>
 
-                {/* TIPOS */}
+         {/* TIPOS */}
         <div className="mt-4">
           <TypeBadges
             types={pokemon.types.map((t) => t.type.name)}
