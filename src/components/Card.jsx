@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { useFavorites } from "../context/FavoritesContext";
 import { typeIcons, typeColors, typeNames } from "../utils/typeData";
+import toast from "react-hot-toast";
 
 export default function Card({ pokemon }) {
   const { favorites, addFavorite, removeFavorite } = useFavorites();
@@ -12,8 +13,10 @@ export default function Card({ pokemon }) {
 
     if (isFavorite) {
       removeFavorite(pokemon.id);
+      toast("❌ Eliminado de favoritos");
     } else {
       addFavorite(pokemon);
+      toast.success("❤️ Añadido a favoritos");
     }
   };
 
@@ -22,43 +25,32 @@ export default function Card({ pokemon }) {
 
       <article className="bg-gray-800 p-4 rounded-2xl shadow-lg hover:shadow-2xl hover:scale-105 transition duration-300 cursor-pointer flex flex-col justify-between h-full">
 
-        {/* IMAGEN */}
         <img
+          loading="lazy"
           src={pokemon.image}
           alt={`Imagen de ${pokemon.name}`}
           className="w-full h-32 object-contain"
         />
 
-        {/* NOMBRE */}
         <h3 className="text-center capitalize font-bold mt-2">
           {pokemon.name}
         </h3>
 
-        {/* TIPOS */}
         <ul className="flex justify-center gap-2 mt-3 flex-wrap">
-
           {pokemon.types.map((t) => (
             <li
               key={t}
               className={`flex items-center justify-center gap-2 px-3 py-1.5 rounded-full ${typeColors[t]}`}
             >
-              {/* ICONO */}
-              <img
-                src={typeIcons[t]}
-                alt={t}
-                className="w-4 h-4"
-              />
+              <img src={typeIcons[t]} className="w-4 h-4" />
 
-              {/* TEXTO SOLO EN DESKTOP */}
               <span className="hidden sm:inline text-xs font-semibold">
                 {typeNames[t]}
               </span>
             </li>
           ))}
-
         </ul>
 
-        {/* BOTÓN */}
         <button
           onClick={handleFavoriteClick}
           className={`mt-3 w-full py-2 rounded-lg transition text-sm font-semibold ${

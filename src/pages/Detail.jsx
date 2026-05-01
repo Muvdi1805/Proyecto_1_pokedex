@@ -20,57 +20,58 @@ export default function Detail() {
   const [evolution, setEvolution] = useState([]);
   const [generation, setGeneration] = useState("");
 
- useEffect(() => {
-  // SCROLL ARRIBA SIEMPRE
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth", // puedes quitar "smooth" si no quieres animación
-  });
+  useEffect(() => {
+    // SCROLL ARRIBA
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
 
-  const fetchData = async () => {
-    try {
-      const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
-      const data = await res.json();
-      setPokemon(data);
+    const fetchData = async () => {
+      try {
+        const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
+        const data = await res.json();
+        setPokemon(data);
 
-      // TIPOS
-      const typeRes = await fetch(data.types[0].type.url);
-      const typeData = await typeRes.json();
+        // TIPOS
+        const typeRes = await fetch(data.types[0].type.url);
+        const typeData = await typeRes.json();
 
-      setWeaknesses(typeData.damage_relations.double_damage_from);
-      setStrengths(typeData.damage_relations.double_damage_to);
+        setWeaknesses(typeData.damage_relations.double_damage_from);
+        setStrengths(typeData.damage_relations.double_damage_to);
 
-      // SPECIES
-      const speciesRes = await fetch(data.species.url);
-      const speciesData = await speciesRes.json();
+        // SPECIES
+        const speciesRes = await fetch(data.species.url);
+        const speciesData = await speciesRes.json();
 
-      setGeneration(speciesData.generation.name);
+        setGeneration(speciesData.generation.name);
 
-      // EVOLUCIONES
-      const evoRes = await fetch(speciesData.evolution_chain.url);
-      const evoData = await evoRes.json();
+        // EVOLUCIONES
+        const evoRes = await fetch(speciesData.evolution_chain.url);
+        const evoData = await evoRes.json();
 
-      const evoList = [];
-      let evoChain = evoData.chain;
+        const evoList = [];
+        let evoChain = evoData.chain;
 
-      do {
-        evoList.push({
-          name: evoChain.species.name,
-          url: evoChain.species.url,
-        });
+        do {
+          evoList.push({
+            name: evoChain.species.name,
+            url: evoChain.species.url,
+          });
 
-        evoChain = evoChain.evolves_to[0];
-      } while (evoChain);
+          evoChain = evoChain.evolves_to[0];
+        } while (evoChain);
 
-      setEvolution(evoList);
+        setEvolution(evoList);
 
-    } catch (err) {
-      console.error("Error cargando Pokémon:", err);
-    }
-  };
+      } catch (err) {
+        console.error("Error cargando Pokémon:", err);
+        toast.error("Error cargando Pokémon ❌");
+      }
+    };
 
-  fetchData();
-}, [id]);
+    fetchData();
+  }, [id]);
 
   const isFavorite = pokemon
     ? favorites.some((f) => f.id === pokemon.id)
@@ -81,7 +82,7 @@ export default function Detail() {
 
     if (isFavorite) {
       removeFavorite(pokemon.id);
-      toast.error("Eliminado de favoritos");
+      toast("❌ Eliminado de favoritos");
     } else {
       addFavorite({
         id: pokemon.id,
@@ -90,7 +91,7 @@ export default function Detail() {
           pokemon.sprites.other["official-artwork"].front_default,
         types: pokemon.types.map((t) => t.type.name),
       });
-      toast.success("Añadido a favoritos ❤️");
+      toast.success("❤️ Añadido a favoritos");
     }
   };
 
@@ -109,7 +110,7 @@ export default function Detail() {
         onClick={() => navigate("/explore")}
         className="mb-6 flex items-center gap-2 bg-gray-800 hover:bg-gray-700 px-4 py-2 rounded-lg transition"
       >
-        ← Volver 
+        ← Volver
       </button>
 
       {/* CARD */}
@@ -143,28 +144,32 @@ export default function Detail() {
           </button>
         </div>
 
-         {/* TIPOS */}
+        {/* TIPOS */}
         <div className="mt-4">
           <TypeBadges
             types={pokemon.types.map((t) => t.type.name)}
           />
         </div>
 
-        {/* STATS + RELACIONES */}
+        {/* STATS */}
         <StatsSection
           stats={pokemon.stats}
           strengths={strengths}
           weaknesses={weaknesses}
         />
 
-        {/* HABILIDADES* /}
+        {/* HABILIDADES */}
         <AbilitiesSection abilities={pokemon.abilities} />
-                 
+
         {/* EVOLUCIONES */}
         <EvolutionSection
           evolution={evolution}
           currentId={id}
-        /> 
+          onSelect={(name) => {
+            toast(`🔄 Viendo evolución: ${name}`);
+            navigate(`/pokemon/${name}`);
+          }}
+        />
 
         {/* GENERACIÓN */}
         <section className="mt-6">

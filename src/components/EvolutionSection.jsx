@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
-export default function EvolutionSection({ evolution, currentId }) {
+export default function EvolutionSection({ evolution, currentId, onSelect }) {
   const navigate = useNavigate();
 
   const getId = (url) => {
@@ -12,7 +12,6 @@ export default function EvolutionSection({ evolution, currentId }) {
     <section className="mt-6">
       <h2 className="font-bold mb-3">Evoluciones</h2>
 
-      {/* 👇 ALINEADO A LA IZQUIERDA */}
       <div className="flex gap-4 flex-wrap">
 
         {evolution.map((e) => {
@@ -22,7 +21,14 @@ export default function EvolutionSection({ evolution, currentId }) {
           return (
             <div
               key={e.name}
-              onClick={() => navigate(`/pokemon/${evoId}`)}
+              onClick={() => {
+                // TOAST + NAVEGACIÓN
+                if (onSelect) {
+                  onSelect(e.name);
+                } else {
+                  navigate(`/pokemon/${evoId}`);
+                }
+              }}
               className={`cursor-pointer p-3 rounded-xl text-center transition shadow-lg
               
               ${
@@ -30,7 +36,6 @@ export default function EvolutionSection({ evolution, currentId }) {
                   ? "bg-yellow-400 text-black scale-105 border-4 border-yellow-300"
                   : "bg-gray-800 hover:bg-gray-700 hover:scale-105"
               }
-              
               `}
             >
 
