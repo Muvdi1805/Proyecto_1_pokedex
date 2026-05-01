@@ -21,7 +21,6 @@ export default function Detail() {
   const [generation, setGeneration] = useState("");
 
   useEffect(() => {
-    // SCROLL ARRIBA
     window.scrollTo({
       top: 0,
       behavior: "smooth",
@@ -165,9 +164,9 @@ export default function Detail() {
         <EvolutionSection
           evolution={evolution}
           currentId={id}
-          onSelect={(name) => {
-            toast(`🔄 Viendo evolución: ${name}`);
-            navigate(`/pokemon/${name}`);
+          onSelect={(evo) => {
+            toast(`🔄 Viendo evolución: ${evo.name}`);
+            navigate(`/pokemon/${evo.id}`);
           }}
         />
 

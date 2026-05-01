@@ -23,7 +23,10 @@ export default function EvolutionSection({ evolution, currentId, onSelect }) {
               key={e.name}
               onClick={() => {
                 if (onSelect) {
-                  onSelect(evoId); 
+                  onSelect({
+                    id: evoId,
+                    name: e.name,
+                    }); 
                 } else {
                   navigate(`/pokemon/${evoId}`);
                 }
