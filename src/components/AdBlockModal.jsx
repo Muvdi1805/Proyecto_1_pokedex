@@ -4,20 +4,24 @@ export default function AdBlockModal() {
   const [open, setOpen] = useState(true);
 
   useEffect(() => {
-    // BLOQUEo DEL SCROLL 
-    document.body.style.overflow = "hidden";
+  
+    if (open) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
 
+   
     return () => {
       document.body.style.overflow = "auto";
     };
-  }, []);
+  }, [open]);
 
   if (!open) return null;
 
   return (
     <div className="fixed inset-0 z-[9999] bg-black/90 flex items-center justify-center">
 
-      {/* CONTENIDO */}
       <div className="bg-gray-900 text-white p-6 rounded-2xl max-w-md w-full text-center shadow-2xl border border-gray-700">
 
         <h2 className="text-2xl font-bold text-red-500 mb-2">
@@ -28,27 +32,27 @@ export default function AdBlockModal() {
           Para continuar usando la app, desactiva tu bloqueador de anuncios.
         </p>
 
-             {/*
+            {/*
                 ⚠️ DARK PATTERN: Confirmshaming + Visual Hierarchy
 
                 Este modal simula la detección de AdBlock (aunque no se verifica realmente),
                 con el objetivo de influenciar la decisión del usuario.
-
+                
                 Se aplican las siguientes técnicas:
 
                 1. Confirmshaming:
-                - El botón negativo usa un texto que hace sentir culpa al usuario:
-                    "No, prefiero una experiencia limitada"
-                - Esto busca que el usuario evite elegir esa opción.
+                El botón negativo usa un texto que hace sentir culpa al usuario:
+                "No, prefiero una experiencia limitada"
+                Esto busca que el usuario evite elegir esa opción.
 
                 2. Jerarquía visual (Visual Hierarchy):
-                - El botón principal ("Desactivar AdBlock") es más grande,
-                    llamativo (color amarillo) y fácil de identificar.
-                - El botón secundario es pequeño, gris y menos visible.
+                El botón principal ("Desactivar AdBlock") es más grande,
+                llamativo (color amarillo) y fácil de identificar.
+                El botón secundario es pequeño, gris y menos visible.
 
                 3. Interrupción del flujo:
-                - El modal aparece automáticamente al entrar,
-                    obligando al usuario a tomar una decisión antes de continuar.
+                El modal aparece automáticamente al entrar,
+                obligando al usuario a tomar una decisión antes de continuar.
 
                 4. Objetivo:
                 Aumentar la probabilidad de que el usuario elija la opción deseada
@@ -76,7 +80,5 @@ export default function AdBlockModal() {
       </div>
     </div>
   );
-}
-
-
- 
+}               
+             

@@ -1,4 +1,7 @@
-import { typeNames } from "../utils/typeData";
+import TypeSelect from "../components/TypeSelect";
+
+const baseStyle =
+  "w-full p-2 bg-gray-800 rounded-xl hover:bg-gray-700 transition shadow-inner text-sm";
 
 export default function Filters({
   search,
@@ -11,7 +14,6 @@ export default function Filters({
   setStrongAgainst,
   weakAgainst,
   setWeakAgainst,
-  typeColors,
 }) {
   return (
     <section className="mb-6">
@@ -23,26 +25,21 @@ export default function Filters({
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           placeholder="Buscar Pokémon..."
-          className="p-2 bg-gray-800 rounded col-span-2 md:col-span-1"
+          className={`${baseStyle} col-span-2 md:col-span-1`}
         />
 
         {/* TIPO */}
-        <select
-          onChange={(e) => setTypeFilter(e.target.value)}
-          className="p-2 bg-gray-800 rounded"
-        >
-          <option value="">Tipo</option>
-          {Object.keys(typeColors).map((t) => (
-            <option key={t} value={t}>
-              {typeNames[t]}
-            </option>
-          ))}
-        </select>
+        <TypeSelect
+          value={typeFilter}
+          onChange={setTypeFilter}
+          label="Tipo"
+        />
 
         {/* GENERACIÓN */}
         <select
+          value={genFilter}
           onChange={(e) => setGenFilter(e.target.value)}
-          className="p-2 bg-gray-800 rounded"
+          className={baseStyle}
         >
           <option value="">Generación</option>
           <option value="generation-i">Gen I</option>
@@ -57,30 +54,18 @@ export default function Filters({
         </select>
 
         {/* FUERTE */}
-        <select
-          onChange={(e) => setStrongAgainst(e.target.value)}
-          className="p-2 bg-gray-800 rounded"
-        >
-          <option value="">Fuerte contra</option>
-          {Object.keys(typeColors).map((t) => (
-            <option key={t} value={t}>
-              {typeNames[t]}
-            </option>
-          ))}
-        </select>
+        <TypeSelect
+          value={strongAgainst}
+          onChange={setStrongAgainst}
+          label="Fuerte contra"
+        />
 
         {/* DÉBIL */}
-        <select
-          onChange={(e) => setWeakAgainst(e.target.value)}
-          className="p-2 bg-gray-800 rounded"
-        >
-          <option value="">Débil contra</option>
-          {Object.keys(typeColors).map((t) => (
-            <option key={t} value={t}>
-              {typeNames[t]}
-            </option>
-          ))}
-        </select>
+        <TypeSelect
+          value={weakAgainst}
+          onChange={setWeakAgainst}
+          label="Débil contra"
+        />
 
       </div>
     </section>
