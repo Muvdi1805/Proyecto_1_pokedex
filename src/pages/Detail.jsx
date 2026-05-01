@@ -20,8 +20,15 @@ export default function Detail() {
   const [evolution, setEvolution] = useState([]);
   const [generation, setGeneration] = useState("");
 
-  useEffect(() => {
-    const fetchData = async () => {
+ useEffect(() => {
+  // 🔥 SCROLL ARRIBA SIEMPRE
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth", // puedes quitar "smooth" si no quieres animación
+  });
+
+  const fetchData = async () => {
+    try {
       const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
       const data = await res.json();
       setPokemon(data);
@@ -39,7 +46,7 @@ export default function Detail() {
 
       setGeneration(speciesData.generation.name);
 
-      // EVOLUCIONES 
+      // EVOLUCIONES
       const evoRes = await fetch(speciesData.evolution_chain.url);
       const evoData = await evoRes.json();
 
@@ -56,10 +63,14 @@ export default function Detail() {
       } while (evoChain);
 
       setEvolution(evoList);
-    };
 
-    fetchData();
-  }, [id]);
+    } catch (err) {
+      console.error("Error cargando Pokémon:", err);
+    }
+  };
+
+  fetchData();
+}, [id]);
 
   const isFavorite = pokemon
     ? favorites.some((f) => f.id === pokemon.id)
@@ -95,10 +106,10 @@ export default function Detail() {
 
       {/* VOLVER */}
       <button
-        onClick={() => navigate(-1)}
-        className="mb-6 text-gray-300 hover:text-white transition"
+        onClick={() => navigate("/explore")}
+        className="mb-6 flex items-center gap-2 bg-gray-800 hover:bg-gray-700 px-4 py-2 rounded-lg transition"
       >
-        ← Volver
+        ← Volver 
       </button>
 
       {/* CARD */}
