@@ -1,31 +1,45 @@
 import { Link } from "react-router-dom";
+import PokemonTunnel from "../components/PokemonTunnel";
 
 export default function Home() {
   return (
     <main className="text-white">
 
       {/* HERO */}
-      <header className="h-screen flex flex-col justify-center items-center text-center bg-gradient-to-br from-black via-gray-900 to-gray-800 px-6">
+      <header className="relative h-screen flex flex-col justify-center items-center text-center bg-gradient-to-br from-black via-gray-900 to-gray-800 px-6 overflow-hidden">
 
-        <h1 className="text-4xl md:text-6xl font-bold mb-4">
+        <h1 className="text-4xl md:text-6xl font-bold mb-4 z-10">
           Descubre el Mundo Pokémon
         </h1>
 
-        <p className="text-gray-300 max-w-xl mb-6">
+        <p className="text-gray-300 max-w-xl mb-6 z-10">
           Explora, analiza y guarda tus Pokémon favoritos con datos reales.
         </p>
 
-        {/* CTA PRINCIPAL */}
+        {/* BOTÓN */}
         <Link
           to="/explore"
-          className="bg-red-500 hover:bg-red-600 px-6 py-3 rounded-lg text-lg font-bold transition"
+          className="bg-red-500 hover:bg-red-600 px-6 py-3 rounded-lg text-lg font-bold transition z-10"
         >
           Explorar ahora
         </Link>
 
-        <p className="text-xs text-gray-500 mt-2">
+        <p className="text-xs text-gray-500 mt-2 z-10">
           (Recomendado por entrenadores expertos 😉)
         </p>
+
+        {/* 🔥 EFECTO TÚNEL */}
+        <div className="absolute bottom-20 w-full overflow-hidden">
+
+          {/* Fade izquierda */}
+          <div className="absolute left-0 top-0 h-full w-32 bg-gradient-to-r from-black to-transparent z-20 pointer-events-none" />
+
+          {/* Fade derecha */}
+          <div className="absolute right-0 top-0 h-full w-32 bg-gradient-to-l from-black to-transparent z-20 pointer-events-none" />
+
+          <PokemonTunnel />
+
+        </div>
 
       </header>
 
@@ -62,6 +76,7 @@ export default function Home() {
         </div>
       </section>
 
+      {/* CTA FINAL */}
       <section className="py-12 text-center bg-gray-900">
 
         <h2 className="text-xl font-bold mb-4">
@@ -72,7 +87,6 @@ export default function Home() {
           Más de 500 Pokémon ya están siendo explorados por otros usuarios.
         </p>
 
-        {/* Se genera sensación de urgencia y miedo a quedarse fuera (Fear Of Missing Out) */}
         <Link
           to="/explore"
           className="bg-yellow-400 text-black px-6 py-3 rounded-lg font-bold hover:bg-yellow-300"

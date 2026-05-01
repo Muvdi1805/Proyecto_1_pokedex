@@ -17,3 +17,45 @@ body {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-scroll {
+  animation: scroll 25s linear infinite;
+}
+
+@keyframes tunnelMove {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-tunnel {
+  animation: tunnelMove 20s linear infinite;
+}
+
+@keyframes floatRotate {
+  0% {
+    transform: rotate(-5deg) translateY(0);
+  }
+  50% {
+    transform: rotate(5deg) translateY(-5px);
+  }
+  100% {
+    transform: rotate(-5deg) translateY(0);
+  }
+}
+
+.animate-float {
+  animation: floatRotate 3s ease-in-out infinite;
+}
