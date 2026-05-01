@@ -16,21 +16,19 @@ export default function EvolutionSection({ evolution, currentId, onSelect }) {
 
         {evolution.map((e) => {
           const evoId = getId(e.url);
-          const isCurrent = Number(evoId) === Number(currentId);
+          const isCurrent = String(evoId) === String(currentId);
 
           return (
             <div
               key={e.name}
               onClick={() => {
-                // TOAST + NAVEGACIÓN
                 if (onSelect) {
-                  onSelect(e.name);
+                  onSelect(evoId); 
                 } else {
                   navigate(`/pokemon/${evoId}`);
                 }
               }}
               className={`cursor-pointer p-3 rounded-xl text-center transition shadow-lg
-              
               ${
                 isCurrent
                   ? "bg-yellow-400 text-black scale-105 border-4 border-yellow-300"
@@ -39,14 +37,12 @@ export default function EvolutionSection({ evolution, currentId, onSelect }) {
               `}
             >
 
-              {/* IMAGEN */}
               <img
                 src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${evoId}.png`}
                 alt={e.name}
                 className="w-20 h-20 mx-auto"
               />
 
-              {/* NOMBRE */}
               <p className="capitalize mt-2 text-sm font-semibold">
                 {e.name}
               </p>

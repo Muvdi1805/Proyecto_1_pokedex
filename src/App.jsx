@@ -47,16 +47,16 @@ export default function App() {
 
         {/* TOASTER */}
         <Toaster
-          position="top-right"
-          containerStyle={{ zIndex: 100000 }}
-          toastOptions={{
+        position="top-right"
+        containerStyle={{ zIndex: 100000 }}
+        toastOptions={{
           duration: 2500,
           style: {
             background: "#111827",
             color: "#fff",
             border: "1px solid #374151",
-    },
-  }}
+          },
+        }}
 />
 
       </BrowserRouter>

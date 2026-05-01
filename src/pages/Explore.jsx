@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react";
-import { typeColors, typeNames } from "../utils/typeData";
+import { useEffect, useMemo, useState } from "react";
+import { typeColors } from "../utils/typeData";
+import toast from "react-hot-toast";
 
 // COMPONENTES
 import Filters from "../components/Filters";
@@ -8,6 +9,7 @@ import PokemonGrid from "../components/PokemonGrid";
 export default function Explore() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false); 
 
   // filtros
   const [search, setSearch] = useState("");
@@ -18,6 +20,8 @@ export default function Explore() {
 
   useEffect(() => {
     const fetchData = async () => {
+      setError(false);
+
       try {
         const res = await fetch(
           "https://pokeapi.co/api/v2/pokemon?limit=500"
@@ -57,6 +61,8 @@ export default function Explore() {
         setData(detailed);
       } catch (err) {
         console.error(err);
+        setError(true); // 🔥 ERROR
+        toast.error("Error cargando Pokémon ❌");
       } finally {
         setLoading(false);
       }
@@ -65,21 +71,32 @@ export default function Explore() {
     fetchData();
   }, []);
 
-  // FILTROS
-  const filtered = data.filter((p) => {
-    return (
-      p.name.toLowerCase().includes(search.toLowerCase()) &&
-      (!typeFilter || p.types.includes(typeFilter)) &&
-      (!genFilter || p.generation === genFilter) &&
-      (!strongAgainst || p.strongAgainst.includes(strongAgainst)) &&
-      (!weakAgainst || p.weakAgainst.includes(weakAgainst))
-    );
-  });
 
+  const filtered = useMemo(() => {
+    return data.filter((p) => {
+      return (
+        p.name.toLowerCase().includes(search.toLowerCase()) &&
+        (!typeFilter || p.types.includes(typeFilter)) &&
+        (!genFilter || p.generation === genFilter) &&
+        (!strongAgainst || p.strongAgainst.includes(strongAgainst)) &&
+        (!weakAgainst || p.weakAgainst.includes(weakAgainst))
+      );
+    });
+  }, [data, search, typeFilter, genFilter, strongAgainst, weakAgainst]);
+
+  // LOADING
   if (loading)
     return (
       <main className="p-6 text-white text-center">
         <p className="animate-pulse">Cargando Pokémon...</p>
+      </main>
+    );
+
+  //  ERROR VISUAL
+  if (error)
+    return (
+      <main className="p-6 text-center text-red-400">
+        Error cargando datos ❌
       </main>
     );
 
@@ -93,7 +110,7 @@ export default function Explore() {
         </h1>
       </header>
 
-      {/*FILTROS*/}
+      {/* FILTROS */}
       <Filters
         search={search}
         setSearch={setSearch}
@@ -108,8 +125,14 @@ export default function Explore() {
         typeColors={typeColors}
       />
 
-      {/*GRID*/}
-      <PokemonGrid data={filtered} />
+      {/* EMPTY STATE */}
+      {filtered.length === 0 ? (
+        <p className="text-center text-gray-400 mt-6">
+          No se encontraron Pokémon "{search}" 🥲
+        </p>
+      ) : (
+        <PokemonGrid data={filtered} />
+      )}
 
     </main>
   );
